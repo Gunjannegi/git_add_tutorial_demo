@@ -15,3 +15,25 @@ items[2].style.backgroundColor='green';
 for(var i=0;i<items.length;i++){
     items[i].style.fontWeight='bold'
 }
+//GETELEMENTBYCLASSNAME
+/*var new_item=document.getElementsByClassName('new-list-item');
+new_item[0].style.fontWeight='bold'
+new_item[0].style.backgroundColor='Pink'
+new_item[0].style.color='Red'
+new_item[0].style.borderBottom= '7px solid orange';*/
+
+//GETELEMENTBYTAGNAME
+var li=document.getElementsByTagName('li')
+li[4].style.fontWeight='bold'
+li[4].style.borderBottom='5px grey'
+li[4].style.backgroundColor='green'
+li[4].style.paddingTop='15px'
+li[4].style.paddingBottom='15px'
+li[4].style.paddingLeft='15px'
+
+for(var i=0;i<li.length;i++){
+    li[i].style.fontWeight='bold'
+    li[i].style.borderBottom= '4px solid grey'
+
+}
+
