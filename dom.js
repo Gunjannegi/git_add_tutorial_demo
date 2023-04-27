@@ -31,9 +31,27 @@ li[4].style.paddingTop='15px'
 li[4].style.paddingBottom='15px'
 li[4].style.paddingLeft='15px'
 
+
 for(var i=0;i<li.length;i++){
     li[i].style.fontWeight='bold'
     li[i].style.borderBottom= '4px solid grey'
 
 }
+/*
+//Make the 2nd item have green background color
+li[1].style.backgroundColor='green'
+//Make the 3rd item invisible
+li[2].style='display:none'
+//Using QuerySelectorALL change the font color to green for 2nd item in the item list
+var second_item=document.querySelector('.list-group-item:nth-child(2)');
+second_item.style.backgroundColor='white'
+second_item.style.color='green'
+*/
+//Choose all the odd elements and make their background green using QuerySelectorALL
+//QUERYSELECTORALL
+var titles=document.querySelectorAll('.title')
+var odd=document.querySelectorAll('li:nth-child(odd)');
 
+for(var i=0;i<odd.length;i++){
+    odd[i].style.backgroundColor='green'
+}
