@@ -12,12 +12,14 @@
         <script>
             function saveToLocalStorage(event){
                 event.preventDefault();
-                const name=event.target.username.value;
-                const email=event.target.emailId.value;
-                const phonenumber=event.target.phonenumber.value;
-                localStorage.setItem('name', name);
-                localStorage.setItem('email', email);
-                localStorage.setItem('phonenumber',phonenumber)
+                var obj={
+                name: event.target.username.value,
+                email: event.target.emailId.value,
+                phonenumber: event.target.phonenumber.value
+                }
+                var obj_serialized=JSON.stringify(obj);
+                localStorage.setItem('obj', obj_serialized);
+                var obj_deserialized=JSON.parse(localStorage.getItem('obj'))
             }
         </script>
     </body>
