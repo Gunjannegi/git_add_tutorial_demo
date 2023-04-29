@@ -13,22 +13,38 @@
         <script>
             function saveToLocalStorage(event){
             event.preventDefault();
-            var obj={
-            name: event.target.username.value,
-            email: event.target.emailId.value,
-            phonenumber: event.target.phonenumber.value
-    }
-            var obj_serialized=JSON.stringify(obj);
-            localStorage.setItem('obj', obj_serialized);
-            saveToLocalStorage(obj)
-
-            function saveToLocalStorage(obj){
-                var parentElement=document.getElementById('list-of-items')
-                var childElement=document.createElement('li')
-                childElement.textContent=obj.name + " " + obj.email + " " + obj.phonenumber
-                parentElement.appendChild(childElement);
+            const name= event.target.username.value;
+            const email= event.target.emailId.value;
+            const phonenumber= event.target.phonenumber.value;
+            const obj={
+                name,
+                email,
+                phonenumber
             }
+            localStorage.setItem(obj.email, JSON.stringify(obj));
+            showUserOnScreen(obj)
 }
+
+            function showUserOnScreen(obj){
+                var ul=document.getElementById('list-of-items')
+                var li=document.createElement('li')
+                li.textContent=obj.name + " " + obj.email + " " + obj.phonenumber + " "
+                ul.appendChild(li);
+                var deleteBtn=document.createElement('input')
+                deleteBtn.type='button'
+                deleteBtn.value='delete'
+                deleteBtn.className='DeleteItem'
+                deleteBtn.style.backgroundColor='red';
+                deleteBtn.style.fontWeight='bold'
+                deleteBtn.style.color='white'
+                li.appendChild(deleteBtn);
+                deleteBtn.onclick = () => {
+                    localStorage.removeItem(obj.email)
+                    ul.removeChild(li)
+                }
+                
+        }
+
         </script>
     </body>
 </html>
