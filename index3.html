@@ -9,18 +9,26 @@
             <input type="tel" name="phonenumber" />
             <button> Submit </button>
         </form>
+        <ul id="list-of-items"></ul>
         <script>
             function saveToLocalStorage(event){
-                event.preventDefault();
-                var obj={
-                name: event.target.username.value,
-                email: event.target.emailId.value,
-                phonenumber: event.target.phonenumber.value
-                }
-                var obj_serialized=JSON.stringify(obj);
-                localStorage.setItem('obj', obj_serialized);
-                var obj_deserialized=JSON.parse(localStorage.getItem('obj'))
+            event.preventDefault();
+            var obj={
+            name: event.target.username.value,
+            email: event.target.emailId.value,
+            phonenumber: event.target.phonenumber.value
+    }
+            var obj_serialized=JSON.stringify(obj);
+            localStorage.setItem('obj', obj_serialized);
+            saveToLocalStorage(obj)
+
+            function saveToLocalStorage(obj){
+                var parentElement=document.getElementById('list-of-items')
+                var childElement=document.createElement('li')
+                childElement.textContent=obj.name + " " + obj.email + " " + obj.phonenumber
+                parentElement.appendChild(childElement);
             }
+}
         </script>
     </body>
 </html>
