@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<body>
+    <form onsubmit="saveToLocalStorage(event)">
+        <label>Choose ExpenseAmount</label>
+        <input type="text" name="Amount"  id="AmountTag" required/>
+        <label>Choose Description</label>
+        <input type="text" name="Description" id="descriptionTag"  required/>
+        <label>Choose a Category</label>
+        <select name="Category" id="CategoryTag">
+            <option value="fuel">fuel</option>
+            <option value="food">food</option>
+            <option value="electricity">electricity</option>
+            <option value="movie">movie</option>
+            <option value="shopping">shopping</option>
+        </select>
+        <button> Add Expense </button>
+    </form>
+    <ul id="Addexpense"></ul>
+<script>
+    function saveToLocalStorage(event){
+            event.preventDefault();
+            const amount= event.target.Amount.value;
+            const description= event.target.Description.value;
+            const category= event.target.Category.value;
+            const obj={
+                amount,
+                description,
+                category   
+                     }
+            localStorage.setItem(obj.category, JSON.stringify(obj));
+            showExpensesOnScreen(obj)
+                    }
+                    function showExpensesOnScreen(obj){
+                        var ul=document.getElementById('Addexpense');
+                        var li=document.createElement('li');
+                        li.id='Track'
+                        li.textContent=obj.amount + " " + obj.description + " " + obj.category;
+                        ul.appendChild(li)                        
+                        var deleteBtn=document.createElement('input')
+                        deleteBtn.type='button'
+                        deleteBtn.value='Delete Expense'
+                        li.appendChild(deleteBtn)
+                        deleteBtn.onclick= () =>{
+                            localStorage.removeItem(obj.category)
+                            ul.removeChild(li)
+                        } 
+                        var editBtn=document.createElement('input')
+                        editBtn.type='button'
+                        editBtn.value='Edit Expense'
+                        li.appendChild(editBtn)
+                        editBtn.onclick= () =>{
+                            localStorage.removeItem(obj.category)
+                            ul.removeChild(li);
+                           document.getElementById('AmountTag').value= obj.amount;
+                           document.getElementById('descriptionTag').value= obj.description;
+                           document.getElementById('CategoryTag').value= obj.category
+                        } 
+                        
+
+                    }
+
+</script>
+
+</body>
+
