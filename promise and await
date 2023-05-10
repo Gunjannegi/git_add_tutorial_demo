@@ -1,0 +1,115 @@
+//promises
+/*console.log('person1 : shows ticket');
+console.log('person2 : shows ticket');
+const PromiseWifeBringingTicket= new Promise((resolve,reject)=>{
+    setTimeout(()=>{
+        resolve('Ticket');
+    },3000)
+
+})
+const getPopcorn = PromiseWifeBringingTicket.then((t)=>{
+    console.log('wife:I have the ticket')
+    console.log('husband : We should go in');
+    console.log('wife : No I am Hungry');
+    return new Promise((resolve,reject)=> resolve(t + " " + "popcorn"))
+        })
+
+const getButter = getPopcorn.then((t)=>{
+    console.log('husband: I got some popcorn')
+    console.log('husband : We should go in');
+    console.log('wife : I need butter on my Popcorn');
+    return new Promise((resolve,reject)=> resolve(t + " " + "butter"))
+        })
+     
+const getColdDrink = getButter.then((t)=>{
+    return new Promise((resolve,reject)=> resolve(t + ' ' + "Cold Drinks"))
+        })
+getColdDrink.then((t)=>{
+    console.log(t)
+})
+
+console.log('person4 : shows ticket');
+console.log('person5 : shows ticket');
+
+//-------------------------------------------------------------------------------------------------------------------------------------------
+
+//async
+/*console.log('person1 : shows ticket');
+console.log('person2 : shows ticket');
+
+const preMovie = async()=> {
+    const PromiseWifeBringingTicket= new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            resolve('Ticket');
+        },3000)
+    
+    })
+    const getPopcorn = new Promise((resolve,reject)=> resolve('Popcorn'))
+    const getCandy = new Promise((resolve,reject)=> resolve('candy'))
+    const getCoke = new Promise((resolve,reject)=> resolve('Coke'))
+    const getButter = new Promise((resolve,reject)=> resolve('butter'))
+    const getColdDrinks = new Promise((resolve,reject)=> resolve('Cold Drinks'))
+    let ticket=await PromiseWifeBringingTicket;
+    let [popcorn,candy,Coke,coldDrinks] = await Promise.all([getPopcorn,getCandy,getCoke,getColdDrinks]);
+    let Butter = await getButter;
+    console.log(popcorn,candy,Coke,coldDrinks)
+    return ticket
+}
+
+preMovie().then((m)=>{
+    console.log('person3 shows' + " " + m);
+})
+
+
+console.log('person4 : shows ticket');
+console.log('person5 : shows ticket');
+*/
+ //-----------------------------------------------------------------------------------------------------------------------------------------
+
+ //create post and delete post
+const Posts=[];
+const createAndDelete = async()=>{
+ function createPost(Post){
+
+    return new Promise((resolve,reject)=>{
+
+        setTimeout(()=>{
+
+        Posts.push(Post);
+
+        resolve();
+
+    },1000)
+
+})
+ }
+function Deletion(){
+
+    return new Promise((resolve,reject)=>{
+
+        setTimeout(()=>{
+
+            if(Posts.length>0){
+
+            let PostElement=Posts.pop();
+
+            resolve(PostElement)
+
+            }
+
+            else{
+
+                reject("ERROR")
+
+            }
+
+        },1000)
+
+    })
+}
+let create=await createPost({title:'Post1'})
+let deletee = await Deletion();
+console.log(deletee.title);
+
+}
+createAndDelete()
