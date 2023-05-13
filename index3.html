@@ -40,15 +40,16 @@
                 console.log(response);
                 for(var i=0;i<response.data.length;i++){
                     showUserOnScreen(response.data[i])
-
+                    
                 }
+                
             })
             .catch((error)=>{
                 console.log(error);
             })
             
         })
-
+        
 
             function showUserOnScreen(obj){
                 var ul=document.getElementById('list-of-items')
@@ -64,7 +65,14 @@
                 deleteBtn.style.color='white'
                 li.appendChild(deleteBtn);
                 deleteBtn.onclick = () => {
-                    localStorage.removeItem(obj.email)
+                    axios.delete(`https://crudcrud.com/api/84598e75c24f436f94718dc9a5d1c125/AppointmentData/${obj._id}`)
+                    .then((reponse)=>{
+                        console.log(reponse)
+                    })
+                    .catch((error)=>{
+                        console.log(error)
+                    })
+                    //localStorage.removeItem(obj.email)
                     ul.removeChild(li)
                 }
                 const editBtn=document.createElement('input')
