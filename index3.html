@@ -84,11 +84,28 @@
                 editBtn.style.color='black'
                 li.appendChild(editBtn);
                 editBtn.onclick = () => {
-                    localStorage.removeItem(obj.email)
+                    axios.patch(`https://crudcrud.com/api/84598e75c24f436f94718dc9a5d1c125/AppointmentData/${obj._id}`,{
+                    title:'Updated AppointmentData',
+                    completed: true
+                })
+                .then((reponse)=>{
+                        console.log(reponse)
+                    })
+                    .catch((error)=>{
+                        console.log(error)
+                    })
+                    //localStorage.removeItem(obj.email)
                     ul.removeChild(li);
                     document.getElementById('usernameTag').value=obj.name;
                     document.getElementById('emailTag').value=obj.email;
                     document.getElementById('phonenumberTag').value=obj.phonenumber;
+                    axios.delete(`https://crudcrud.com/api/84598e75c24f436f94718dc9a5d1c125/AppointmentData/${obj._id}`)
+                    .then((reponse)=>{
+                        console.log(reponse)
+                    })
+                    .catch((error)=>{
+                        console.log(error)
+                    })
                       
                 }
                 
