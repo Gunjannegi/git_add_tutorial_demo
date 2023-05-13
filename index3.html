@@ -22,7 +22,7 @@
                 email,
                 phonenumber
             }
-            axios.post("https://crudcrud.com/api/36de750677f44006bb57650ca63b6ab8/AppointmentData",obj)
+            axios.post("https://crudcrud.com/api/84598e75c24f436f94718dc9a5d1c125/AppointmentData",obj)
             .then((response) => {
                 showUserOnScreen(response.data)
                 console.log(response)
@@ -32,7 +32,23 @@
             })
             //localStorage.setItem(obj.email, JSON.stringify(obj));
             //showUserOnScreen(obj)
-}
+
+        }
+        window.addEventListener("DOMContentLoaded",() =>{
+            axios.get("https://crudcrud.com/api/84598e75c24f436f94718dc9a5d1c125/AppointmentData")
+            .then((response) =>{
+                console.log(response);
+                for(var i=0;i<response.data.length;i++){
+                    showUserOnScreen(response.data[i])
+
+                }
+            })
+            .catch((error)=>{
+                console.log(error);
+            })
+            
+        })
+
 
             function showUserOnScreen(obj){
                 var ul=document.getElementById('list-of-items')
